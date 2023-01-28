@@ -173,7 +173,7 @@ namespace DivCardTrader
             
             Input.KeyDown(Keys.LControlKey);
             yield return Input.SetCursorPositionAndClick(cardTradeWin.CardSlotItem.GetClientRect().Center + _clientOffset, MouseButtons.Left, _latency + _delay);
-            yield return new WaitFunctionTimed(() => CheckDivMovedOut(), true, _maxWaitTime);
+            yield return new WaitFunctionTimed(() => CheckDivMovedOut(), true, 100); // TODO: Inv full check etc
             if (!CheckDivMovedOut())
             {
                 LogMessage("Inventory Full or Error Occurred!", 5);
