@@ -3,6 +3,7 @@ using ExileCore;
 using ExileCore.PoEMemory.Components;
 using ExileCore.PoEMemory.MemoryObjects;
 using ExileCore.Shared;
+using ExileCore.Shared.Helpers;
 using SharpDX;
 using System;
 using System.Collections.Generic;
@@ -120,7 +121,7 @@ public class DivCardTrader : BaseSettingsPlugin<DivCardTraderSettings>
                 await RemoveItem(null);
             }
 
-            await MoveItem(item.GetClientRect().Center);
+            await MoveItem(item.GetClientRect().ClickRandom());
 
             await TradeItem();
 
@@ -173,7 +174,7 @@ public class DivCardTrader : BaseSettingsPlugin<DivCardTraderSettings>
 
         } while (retry < 10);
 
-        Mouse.moveMouse(GameController.IngameState.IngameUi.CardTradeWindow.TradeButton.GetClientRect().Center + WindowOffset);
+        Mouse.moveMouse(GameController.IngameState.IngameUi.CardTradeWindow.TradeButton.GetClientRect().ClickRandom() + WindowOffset);
         await Wait(MouseMoveDelay, true);
         Mouse.LeftDown();
         await Wait(MouseDownDelay, true);
@@ -195,7 +196,7 @@ public class DivCardTrader : BaseSettingsPlugin<DivCardTraderSettings>
                 cardSlotItem.Item.Path != item.Path || 
                 !cardSlotItem.Item.GetComponent<Stack>().FullStack))
             {
-                await MoveItem(cardSlotItem.GetClientRect().Center);
+                await MoveItem(cardSlotItem.GetClientRect().ClickRandom());
                 return true;
             }
 
